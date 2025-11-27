@@ -1,7 +1,7 @@
 
 # 2025 Winter School on Math+AI (Discrete Math)
 
-This repository is for Team DM on `2025 Winter School on Math+AI`.
+This repository is for Team DM on *2025 Winter School on Math+AI*.
 
 We aim to utilize the code-agent *FunSearch* to solve various problems in discrete math.
 A part of this repository is forked from `https://github.com/kitft/funsearch.git`. (You can find a detail document for FunSearch in the github repository.)
@@ -19,7 +19,7 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
 
 1. Connect the server via ssh.
   ```
-  ssh -i <key-chain.pem> <your_id>@<server_ip>
+  ssh <your_id>@<server_ip>
   ```
 
 2. Clone the repository and navigate to the project directory
