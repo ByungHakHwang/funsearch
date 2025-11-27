@@ -311,8 +311,10 @@ If you are getting OPENAI Async doesn't exist errors, run `pip install openai>=1
 ---
 # Original Google DeepMind FunSearch Repository Data
 
+This project is a derivative work based on [FunSearch](https://github.com/kitft/funsearch) by KitFT.
+Licensed under Apache License 2.0.
 
-This repository accompanies the publication
+This repository is forked from https://github.com/jonppe/funsearch, which accompanies the publication
 
 > Romera-Paredes, B. et al. [Mathematical discoveries from program search with large language models](https://www.nature.com/articles/s41586-023-06924-6). *Nature* (2023)
 
@@ -332,11 +334,6 @@ If you use the code or data in this package, please cite:
 
 
 ---
-
-forked from https://github.com/jonppe/funsearch via https://github.com/ByungHakHwang/funsearch-winterschool
-
-This project is a derivative work based on [FunSearch](https://github.com/kitft/funsearch) by KitFT.
-Licensed under Apache License 2.0.
 
 
 ```
