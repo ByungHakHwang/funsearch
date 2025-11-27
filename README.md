@@ -9,6 +9,12 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
 
 ## Installation and Setup
 
+### Before installation
+
+1. Prepare your laptop.
+
+2. Recommend to use Docker and VSCode.
+
 ### On AWS server
 
 1. Connect the server via ssh.
@@ -51,7 +57,7 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
     ```
 
 6. (Example) Run *FunSearch* as follows:
-    ```
+    ``` bash
     funsearch runasync examples/cap_set_spec.py 8 \
       --model gpt-4o-mini \
       --samplers 2 \
@@ -66,67 +72,6 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
       --relative_cost_of_input_tokens 1.0 \
       --output_path ./data
     ```
-
-
-
-## Installation and Setup
-
-### Using Docker (Recommended)
-
-1. Install Docker and python 3.10+. Make sure the docker service is running.
-   
-2. Clone the repository and navigate to the project directory
-
-`git clone https://github.com/kitft/funsearch.git`
-`cd funsearch`
-   
-3. Set your API keys by creating a `.env` file in the project root (this file will be automatically gitignored):
-   ```
-   # Create a .env file in the project root
-   touch .env
-   
-   # Add your API keys to the .env file:
-   MISTRAL_API_KEY=<your_key_here>
-   GOOGLE_API_KEY=<your_key_here>
-   OPENAI_API_KEY=<your_key_here>
-   ANTHROPIC_API_KEY=<your_key_here>
-   OPENROUTER_API_KEY=<your_key_here>
-   WANDB_API_KEY=<your_wandb_key_here>
-   DEEPINFRA_API_KEY=<your_deepinfra_key_here>
-   ```
-5. If you're using Docker desktop, open the app. Then, build the Docker image with the command below. This may take a while, especially the first time. You will need to re-build if you update the Dockerfile or edit the code. You should not need to re-build if you are only updating the input python file or input data. Create a data folder and run the container
-
-   ```
-   mkdir data
-   docker build . -t funsearch
-   docker run -it -v ./data:/workspace/data -v ./examples:/workspace/examples --env-file .env funsearch
-   ```
-
-## Model Selection
-- Any model name containing a slash (/) will automatically use the OpenRouter API. For example:
-  - 'anthropic/claude-3-opus'
-  - 'google/gemini-pro'
-  - 'meta-llama/llama-2-70b-chat'
-  - 'mistralai/mixtral-8x7b'
-- You can find the full list of available models at https://openrouter.ai/docs
-- Multiple models can be specified using comma separation with optional counts and key numbers:
-  - `model1*count1*key1,model2*count2*key2`
-  - Example: `codestral-latest*10*0,mistralai/codestral_mamba*5*1` will use 10 codestrals from mistral, and 5 mistral-tinys from openrouter.
-- Note the key numbers are used to differentiate between different API keys for the same model. These can be passed as separate environment variables with integers on the end. The separate ones will only be used if the key number is greater than 0.
-- You can also specify a model from OpenAI or Anthropic, etc. If this doesn't work, have a look at models.py
-- Setting model temperatures: pass a list of temperatures, one for each model. Format: "temperature1,temperature2,..."
-- Before starting the search, each model is validated to ensure it's working correctly:
-
-## Advice
-- Run the search with the desired model using the '--model' attribute.
-- A good one to use for testing, as an extremely cheap model, is 'mistral-tiny-latest'. 
-- The best one for our use case is probably 'codestral-latest', which is 4x more expensive per output token.
-- Another great one might be deepseek/deepseek-chat, which is competitive with claude-3-5-sonnet and much cheaper.
-- Either model is still relatively cheap: with codestral, 1 million output tokens is $0.6.
-- You can also pass in a model name from OpenAI or Anthropic, etc. If this doesn't work, have a look at models.py
-- One should be careful what functions are imorted at the start of the SPEC file, as this will be available to the evolving function written by the LLM. You can change which functions and packages are allowed/blacklisted by changing evolve.py.
--- By default, the following packages are allowed: 'itertools', 'numpy', 'np', 'math', 'functools', 'collections', 'random'
--- By default the following functions are blacklisted: '\_\_import\_\_', 'breakpoint', 'compile', 'open', 'dir', 'eval', 'exec', 'globals', 'input', 'repr', 'np.savetxt', 'np.loadtxt', 'np.genfromtxt', 'np.fromfile', 'np.tofile', 'np.frombuffer', 'np.save', 'np.savez', 'np.savez_compressed', 'np.load'
 
 ## Running the search
 `funsearch runasync` takes two arguments and several options:
@@ -388,7 +333,11 @@ If you use the code or data in this package, please cite:
 
 ---
 
-forked from https://github.com/google-deepmind/funsearch via https://github.com/jonppe/funsearch 
+forked from https://github.com/jonppe/funsearch via https://github.com/ByungHakHwang/funsearch-winterschool
+
+This project is a derivative work based on [FunSearch](https://github.com/kitft/funsearch) by KitFT.
+Licensed under Apache License 2.0.
+
 
 ```
 
