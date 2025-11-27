@@ -1,5 +1,10 @@
 
-# Funsearch
+# 2025 Winter School on Math+AI (Discrete Math)
+
+This repository is for Team DM on `2025 Winter School on Math+AI`.
+
+We aim to utilize the code-agent *FunSearch* to solve various problems in discrete math.
+This repository is forked from `https://github.com/kitft/funsearch.git`.
 
 A high-performance implementation of program search using LLMs, built for discovering mathematical algorithms and solving optimization problems. We essentially run a genetic programming algorithm with LLMs as the mutation/breeding operator.
 
