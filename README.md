@@ -19,7 +19,7 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
 
 1. Connect the server via ssh.
   ```
-  ssh <your_id>@<server_ip>
+  ssh -i <key-chain.pem> <your_id>@<server_ip>
   ```
 
 2. Clone the repository and navigate to the project directory
