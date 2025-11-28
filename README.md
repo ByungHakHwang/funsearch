@@ -13,9 +13,12 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
 
 1. Prepare your laptop.
 
-2. Recommend to use Docker and VSCode.
+2. (If you will use your own server) Check to be able to use Docker and git.
+(If you will use AWS servers) Check your ssh connection.
 
-3. Create your wandb API at https://wandb.ai/.
+3. Recommend to use VSCode.
+
+4. Create your wandb API at https://wandb.ai/.
 
 ### On AWS server
 
@@ -26,8 +29,8 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
 
 2. Clone the repository and navigate to the project directory
   ```
-  git clone https://github.com/ByungHakHwang/funsearch-winterschool.git
-  cd funsearch-winterschool
+  git clone https://github.com/ByungHakHwang/funsearch.git
+  cd funsearch
   ```
 
 3. Set your API keys by creating a `.env` file in the project root (this file will be automatically gitignored):
@@ -47,8 +50,8 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
 
 4. Make the following directories.
     ```
-    mkdir -p ~/funsearch-winterschool/data
-    mkdir -p ~/funsearch-winterschool/examples
+    mkdir -p ~/funsearch/data
+    mkdir -p ~/funsearch/examples
     ```
 
 5. Build the docker image, and run the container.
