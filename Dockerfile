@@ -17,7 +17,7 @@ RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 # Copy application code
-COPY examples ./examples
+COPY problems ./problems
 COPY funsearch ./funsearch
 
 # Install the application
@@ -36,7 +36,7 @@ RUN if getent group ${GROUP_ID} >/dev/null 2>&1; then \
 WORKDIR /home/${USERNAME}/workspace
 
 # 필요한 디렉토리 구조 생성 및 권한 설정
-RUN mkdir -p data/scores data/graphs data/backups examples && \
+RUN mkdir -p data/scores data/graphs data/backups problems && \
     chown -R ${USER_ID}:${GROUP_ID} /home/${USERNAME}
 
 # 임시 빌드 디렉토리 정리
