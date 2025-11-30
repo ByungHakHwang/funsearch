@@ -57,7 +57,7 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
   ./run_funsearch.sh
   ```
 
-6. Run *FunSearch* with the default setting.
+6. Run *FunSearch* with the default settings. (If wandb asks for input, just press ENTER.)
   ```
   ./run.sh
   ```
