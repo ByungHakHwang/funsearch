@@ -1,0 +1,9 @@
+#!/bin/bash
+export SAMPLERS=2
+export EVALUATORS=7
+export ISLANDS=4
+export DURATION=50
+export RESET=20
+export TEMPERATURE=1.0
+export RELATIVE_COST=1.0
+export TOKEN_LIMIT=2000000
