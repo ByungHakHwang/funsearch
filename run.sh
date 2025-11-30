@@ -15,7 +15,7 @@ if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
     exit 0
 fi
 
-SPEC="${1:-spec_0}"
+SPEC="${1:-no-spec}"
 PROBLEM_FILE="${2:-problems/cap_set_spec.py}"
 ARGUMENT="${3:-8}"
 
