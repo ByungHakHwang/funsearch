@@ -49,7 +49,7 @@ A part of this repository is forked from `https://github.com/kitft/funsearch.git
   DEEPINFRA_API_KEY=<your_deepinfra_key_here>
   ```
 
-4. 권한 부여
+4. Make the script executable
   ```
   chmod +x run_funsearch.sh
   ```
