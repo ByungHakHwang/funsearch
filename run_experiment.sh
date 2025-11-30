@@ -20,9 +20,9 @@ RELATIVE_COST="${RELATIVE_COST:-1.0}"
 OUTPUT_PATH="${OUTPUT_PATH:-./data}"
 
 # 실행 정보 출력
-echo "=========================================="
-echo "FunSearch Experiment Configuration"
-echo "=========================================="
+echo "================================================"
+echo "       FunSearch Experiment Configuration      "
+echo "================================================"
 echo "Problem File:    ${PROBLEM_FILE}"
 echo "Argument:        ${ARGUMENT}"
 echo "Model:           ${MODEL}"
@@ -37,7 +37,7 @@ echo "Temperature:     ${TEMPERATURE}"
 echo "Token Limit:     ${TOKEN_LIMIT}"
 echo "Relative Cost:   ${RELATIVE_COST}"
 echo "Output Path:     ${OUTPUT_PATH}"
-echo "=========================================="
+echo "================================================"
 echo ""
 
 # 출력 디렉토리 확인 및 생성
