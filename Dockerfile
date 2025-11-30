@@ -1,39 +1,49 @@
 FROM docker.io/python:3.11.6
 
-WORKDIR /workspace
+# 빌드 시점 인자 (기본값 설정)
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+ARG USERNAME=appuser
+
+# 임시 작업 디렉토리에서 설치 작업 수행
+WORKDIR /tmp/build
 
 # Copy build and dependency files first for better layer caching
 COPY pyproject.toml README.md ./
 COPY requirements*.txt ./
 
-# Install dependencies using either uv or pip based on build arg
-# Build with: docker build --build-arg USE_UV=true -t funsearch .
-ARG USE_UV=false
-RUN if [ "$USE_UV" = "true" ]; then \
-        pip install --upgrade pip && \
-        pip install uv && \
-        uv pip install --system -r requirements.txt; \
-    else \
-        pip install --upgrade pip && \
-        pip install -r requirements.txt; \
-    fi
-
-# Create necessary subfolders in data directory  
-RUN mkdir -p ./data && \
-    cd ./data && \
-    mkdir -p scores graphs backups && \
-    cd ..
+# Install dependencies using pip (UV 옵션 제거)
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
 # Copy application code
 COPY examples ./examples
 COPY funsearch ./funsearch
 
 # Install the application
-RUN if [ "$USE_UV" = "true" ]; then \
-        uv pip install --system --no-deps .; \
+RUN pip install --no-deps . && \
+    rm -rf ./funsearch ./build
+
+# 그룹 및 사용자 생성 (이미 존재하는 GID/UID 처리)
+RUN if getent group ${GROUP_ID} >/dev/null 2>&1; then \
+        groupmod -n ${USERNAME} $(getent group ${GROUP_ID} | cut -d: -f1); \
     else \
-        pip install --no-deps .; \
+        groupadd -g ${GROUP_ID} ${USERNAME}; \
     fi && \
-    rm -r ./funsearch ./build
+    useradd -l -u ${USER_ID} -g ${GROUP_ID} -s /bin/bash -m ${USERNAME}
+
+# 사용자 홈 디렉토리로 작업 공간 설정
+WORKDIR /home/${USERNAME}/workspace
+
+# 필요한 디렉토리 구조 생성 및 권한 설정
+RUN mkdir -p data/scores data/graphs data/backups examples && \
+    chown -R ${USER_ID}:${GROUP_ID} /home/${USERNAME}
+
+# 임시 빌드 디렉토리 정리
+RUN rm -rf /tmp/build
+
+# 사용자 전환
+USER ${USER_ID}:${GROUP_ID}
 
 CMD ["bash"]
+
